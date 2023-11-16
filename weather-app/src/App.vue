@@ -34,8 +34,8 @@ export default {
   name: 'App',
   data() {
     return {
-      api_key: "c08b82432d009d85a2851ffebbcbc551",
-      url_base: "https://api.openweathermap.org/data/2.5/",
+      api_key: process.env.VUE_APP_WEATHER_API_KEY,
+      url_base: process.env.VUE_APP_WEATHER_URL_BASE,
       // "weather?lat={lat}&lon={lon}&appid={API key}"
       query: '',
       weather: {}
