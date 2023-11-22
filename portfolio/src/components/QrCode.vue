@@ -1,9 +1,9 @@
 <template>
-    <v-overlay :overlay="showQrCode" class="center-screen" style="opacity: 2.5">
+    <v-overlay @click="closeOverlay" class="align-center justify-center" style="opacity: 2.5">
         <v-row class="center-screen" >
             <v-col>
-                <v-card  width="250px" height="250px" outlined tile color="#1E1E1E">
-                    <v-img src="images/frame.png"></v-img>
+                <v-card width="250px" height="250"  color="#1E1E1E">
+                    <v-img contain src="images/frame.png"></v-img>
                 </v-card> 
                 <h3 class="text-white"> Scan Me!</h3>
             </v-col>
@@ -13,10 +13,10 @@
 
 <script>
 export default {
-    props:["showQrCode"]
+    methods: {
+        closeOverlay(){
+            this.$emit('handleContact')
+        }
+    }
 }
 </script>
-
-<style>
-
-</style>

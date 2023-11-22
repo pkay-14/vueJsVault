@@ -1,175 +1,154 @@
 <template>
-  <NavbarView/>
+    <NavbarView/>
   <v-app id="home" :style="{background: $vuetify.theme.themes.dark.background}">
     <v-container fluid>
-      <v-row>
-        <v-col cols="6">
+      <v-row >
+        <v-col cols="12" md="6" >
           <v-hover>
             <template v-slot:default="{ isHovering, props }">
-              <v-img class="profileImg" contain max-height="500"
-                v-bind="props"
+              <v-img class="profileImg" max-height="400" v-bind="props"
                 :src="isHovering ? profile.imageSrc : 'images/pcboy.png'"
                 title="Profile photo"
                 text="..."
               ></v-img>
             </template>
           </v-hover>
-        </v-col>
-        <v-col cols="6">
-          <h4 class="text-red text-darken-4 top"> Hello I'm {{profile.firstName}}</h4>
+        </v-col>        
+        <v-col cols="12" md="6">
+          <h3 class="mt-2 mt-md-16 text-red text-darken-4"> Hello I'm {{profile.firstName}}</h3>
           <h1 class="text-white">{{profile.jobTitle}}</h1>
           <p class="text-grey">
             {{profile.message}}
           </p>
-          <v-btn :href= profile.cvUrl color="#A7121D" dark download target="_blank">Download CV</v-btn>
+          <v-col class="text-right">
+            <v-btn :href= profile.cvUrl right variant="text" color="#A7121D" dark download target="_blank">Download CV</v-btn>
+          </v-col>
         </v-col>
         <v-col cols="12" class="padd">
-          <div class="first" id="project">
+          <div class="first" id="experience">
             <v-row>
-              <v-col cols="12">
+              <v-col md="12">
                 <div class="child bgColor1">
-                  <v-icon color="#A7121D" x-large class="ml-3">
-                    mdi-palette-swatch
-                  </v-icon>
-                  <h3 class="text-white ml-3 mt-4"> {{professionInfo.work[0].jobTitle}}</h3>
-                  <p class="text-grey ml-3 mt-6 mb-3">
-                    Worked with {{professionInfo.work[0].projectName}}:
-                    {{professionInfo.work[0].jobDescription}}
-                  </p>
+                    <v-banner contain theme="dark" icon="mdi-palette-swatch" color="#A7121D" lines="one" class="text-white">
+                       <v-banner-text>
+                        {{professionInfo.work[0].jobTitle}}
+                       </v-banner-text>
+                    </v-banner>
+                  <v-card max-height="100px" class="overflow-auto dark bgColor1">
+                    <v-card-text class="text-white ml-3 mt-6 mb-3">
+                      Worked with {{professionInfo.work[0].projectName}}:
+                      {{professionInfo.work[0].jobDescription}}
+                    </v-card-text>
+                  </v-card>
                 </div>
-                <div class="child bgColor2">
-                  <v-icon x-large class="ml-3" dark>mdi-shopping</v-icon>
-                  <h3 class="text-white ml-3 mt-4">{{professionInfo.work[1].jobTitle}}</h3>
-                  <p class="text-grey ml-3 mt-6 mb-3">
-                    Worked with {{professionInfo.work[1].projectName}}:
-                    {{professionInfo.work[1].jobDescription}}
-                  </p>
-                </div>
-              </v-col>
-              <v-col cols="12" class="mt-10">
-                <div class="child1">
-                  <h1 class="text-red text-darken-4 mt-4 number">{{professionInfo.workingExperience.years}}</h1>
-                  <h3 class="text-white mt-4">Years Professional Experience</h3>
-                </div>
-                <div class="child2 mRight">
-                  <v-row>
-                     <v-col cols="12" class="childcol">
-                      <div class="child2 padding bgColor1">
-                        <h3 class="text-red text--darken-4">Previous Employer</h3>
-                        <p class="text-grey">{{professionInfo.workingExperience.employer}}</p>
-                      </div>
-                    </v-col>
-                    <v-col cols="12" class="childcol">
-                      <div class="child2 mBottom padding bgColor1">
-                        <h3 class="text-red text--darken-4">{{professionInfo.education[0].qualificationName}}</h3>
-                        <p class="text-grey">{{professionInfo.education[0].Institution}}</p>
-                      </div>
-                    </v-col>
-                  </v-row>
-                </div>
-                <div class="child2">
-                  <v-row>
-                    <v-col cols="12" class="childcol">
-                      <div class="child2 mBottom padding bgColor1">
-                        <h3 class="text-red text--darken-4">{{professionInfo.education[1].qualificationName}}</h3>
-                        <p class="text-grey">{{professionInfo.education[1].Institution}}</p>
-                      </div>
-                    </v-col>
-                    <v-col cols="12" class="childcol">
-                      <div class="child2 padding bgColor1">
-                        <h3 class="text-red text--darken-4">{{professionInfo.education[2].qualificationName}}</h3>
-                        <p class="text-grey">{{professionInfo.education[1].Institution}}</p>
-                      </div>
-                    </v-col>
-                  </v-row>
+                <div class="child bgColor2 mt-0 mt-xs-5">
+                  <v-banner contain lines="one" class="bgColor2" icon="mdi-shopping">
+                    <v-banner-text class="text-white">
+                      {{professionInfo.work[1].jobTitle}}
+                    </v-banner-text>
+                  </v-banner>
+                  <v-card max-height="100px" class="overflow-y-auto dark bgColor2">
+                    <v-card-text class="text-white ml-3 mt-6 mb-3">
+                      Worked with {{professionInfo.work[1].projectName}}:
+                      {{professionInfo.work[1].jobDescription}}
+                    </v-card-text>
+                  </v-card>
                 </div>
               </v-col>
+              <v-responsive>
+                <v-col md="12">
+                  <div class="child1">
+                    <h1 class="text-red text-darken-4 mt-4 number">{{professionInfo.workingExperience.years}}</h1>
+                    <h3 class="text-white mt-4">Years Professional Experience</h3>
+                  </div>
+                  <div class="child2 mRight">
+                    <v-row>
+                      <v-col cols="12" class="childcol">
+                        <div class="child2 padding bgColor1">
+                          <h3 class="text-red text--darken-4">Previous Employer</h3>
+                          <p class="text-grey">{{professionInfo.workingExperience.employer}}</p>
+                        </div>
+                      </v-col>
+                      <v-col cols="12" class="childcol">
+                        <div class="child2 mBottom padding bgColor1">
+                          <h3 class="text-red text--darken-4">{{professionInfo.education[0].qualificationName}}</h3>
+                          <p class="text-grey">{{professionInfo.education[0].Institution}}</p>
+                        </div>
+                      </v-col>
+                    </v-row>
+                  </div>
+                  <div class="child2">
+                    <v-row>
+                      <v-col cols="12" class="childcol">
+                        <div class="child2 mBottom padding bgColor1">
+                          <h3 class="text-red text--darken-4">{{professionInfo.education[1].qualificationName}}</h3>
+                          <p class="text-grey">{{professionInfo.education[1].Institution}}</p>
+                        </div>
+                      </v-col>
+                      <v-col cols="12" class="childcol">
+                        <div class="child2 padding bgColor1">
+                          <h3 class="text-red text--darken-4">{{professionInfo.education[2].qualificationName}}</h3>
+                          <p class="text-grey">{{professionInfo.education[2].Institution}}</p>
+                        </div>
+                      </v-col>
+                    </v-row>
+                  </div>
+                </v-col>
+              </v-responsive>
             </v-row>
           </div>
         </v-col>
-        <v-col md="3" offset-md="3" id="about">
-          <h4 class="text-white"> FEATURED PROJECTS</h4>
-          <p class="text-grey">{{projectSummary}}</p>
+        <v-row class="mt-6">
+          <v-col cols="12" md="3" offset-md="3" id="projects" >
+          <h4 class="text-white text-center text-md-left"> FEATURED PROJECTS</h4>
+          <p class="text-grey text-center text-md-left">{{projectSummary}}</p>
         </v-col>
-        <v-col md="3" class="text-end">
+        <v-col cols="12" md="3" class="text-center text-md-end">
           <v-btn tile color="#A7121D" dark :href=profile.gitHubRepo target="_blank">
             View Repository
             <v-icon right>mdi-github</v-icon>
           </v-btn>
         </v-col>
-        <v-col md="3" offset-md="3">
-          <v-card class="pa-2 py-12" outlined tile height="250px" color="#1E1E1E">
-            <v-img :src= projects[0].photoSrc contain @click="handleProjectView(projects[0].id)"></v-img>
-          </v-card>
-        </v-col>
-        <v-col md="3">
-          <v-card class="pa-2 py-12" outlined tile height="250px" color="#1E1E1E">
-            <v-img :src= projects[1].photoSrc contain @click="handleProjectView(projects[1].id)"></v-img>
-          </v-card>
-        </v-col>
-        <v-col md="3" offset-md="3">
-          <v-btn id="plantfrau" variant="text" color="white" dark text class="ml-n4"
-          @click="handleProjectView(projects[0].id)"
-          >
-           {{projects[0].name}}
-          </v-btn> <br />
-          <v-btn :href = projects[0].sourceCode variant="text" color="#A7121D" dark text class="ml-n4" target="_blank">
-            View source
-            <v-icon right>mdi-arrow-right</v-icon>
-          </v-btn>
-        </v-col>
-          <v-col md="3">
-          <v-btn id="weather" variant="text" color="white" dark text class="ml-n4"
-          @click="handleProjectView(projects[1].id)"
-          >
-             {{projects[1].name}}
-          </v-btn> <br />
-          <v-btn :href = projects[1].sourceCode variant="text" color="#A7121D" dark text class="ml-n4" target="_blank">
-            View source
-            <v-icon right>mdi-arrow-right</v-icon>
-          </v-btn>
-        </v-col>
-        <v-col md="3" offset-md="3">
-          <v-card class="pa-2 py-12" outlined tile height="250px" color="#1E1E1E">
-            <v-img :src= projects[2].photoSrc contain @click="handleProjectView(projects[2].id)"></v-img>
-          </v-card>
-        </v-col>
-        <v-col md="3">
-          <v-card class="pa-2 py-12" outlined tile height="250px" color="#1E1E1E">
-            <v-img :src= projects[3].photoSrc contain @click="handleProjectView(projects[3].id)"></v-img>
-          </v-card>
-        </v-col>
-        <v-col md="3" offset-md="3">
-          <v-btn variant="text" color="white" dark text class="ml-n4"
-          @click="handleProjectView(projects[2].id)"
-          >
-             {{projects[2].name}}
-          </v-btn> <br />
-          <v-btn :href = projects[2].sourceCode variant="text" color="#A7121D" dark text class="ml-n4" target="_blank">
-            View source
-            <v-icon right>mdi-arrow-right</v-icon>
-          </v-btn>
-        </v-col>
-        <v-col md="3">
-          <v-btn variant="text" color="white" dark text class="ml-n4" @click="handleProjectView(projects[3].id)">
-             {{projects[3].name}}
-          </v-btn> <br />
-          <v-btn :href = projects[3].sourceCode variant="text" color="#A7121D" dark text class="ml-n4" target="_blank">
-            View source
-            <v-icon right>mdi-arrow-right</v-icon>
-          </v-btn>
-        </v-col>
+        </v-row>
+        <div class="grid-container">
+          <v-col v-for="project in projects" :key="project.id" cols="12" >
+            <v-card class="d-flex flex-column w-100 grid-item" outlined tile max-height="250px" color="transparent">
+              <h4 class="text-grey center">
+              {{project.name}}
+              </h4>
+              <v-img :src= project.photoSrc contain max-height="160px" class="d-none d-sm-flex"
+                @click="handleProjectView(project.id)">
+              </v-img>
+              
+              <div class="align-center d-flex d-sm-none text-right">
+                <video contain
+                class="w-100"
+                :src="project.videoSrc"
+                :loop="true"
+                :volume="0"
+                :autoplay=true
+                :height="150"
+                >
+                </video>
+              </div>
+              <v-btn :href = project.sourceCode variant="text" color="#A7121D" class="ml-n4" target="_blank">
+                View source
+                <v-icon>mdi-arrow-right</v-icon>
+              </v-btn>
+            </v-card>
+          </v-col>
+        </div>
         <v-col cols="12" class="padd topInverse">
           <div class="second">
           <div class="secondchild1" id="contact">
             <v-row class="center">
-              <v-col cols="7">
-                <h1 class="text-white center">
+              <v-col cols="12" class="text-white center">
+                <h3>
                   Let's work together on your project!
-                </h1>
+                </h3>
               </v-col>
-              <v-col cols="5">
-                <v-btn tile color="#A7121D" dark class="mt-5 ml-15" @click="handleContact">
+              <v-col cols="12">
+                <v-btn tile color="#A7121D" dark @click="handleContact">
                   Contact
                   <v-icon class="ml-2">
                       mdi-card-account-mail-outline
@@ -177,6 +156,7 @@
                 </v-btn>
               </v-col>
             </v-row>
+            <QrCode v-model="showQrCode" @handleContact="handleContact"/>
           </div>
           </div>
           <v-toolbar class="topToolbar" color="#111111" dark flat>
@@ -185,20 +165,26 @@
       </v-row>
     </v-container>
     <FooterView />
-    <QrCode v-model="showQrCode"/>
   </v-app>
   <v-overlay v-model="overlay" class="center-screen">
    <v-row class="center-screen" >
         <v-col>
-          <v-card  outlined tile color="grey" max-height="500">
-            <!-- <p class="text-black bg-grey mt-4"> {{videoDesc}}</p> -->
-            <video
+          <v-card color="#1e1e1e" class="d-flex flex-column" max-height="500">
+            <span style="z-index: 1">
+              <v-btn @click="()=>{overlay = !overlay}" icon color="#1e1e1e" class="float-right px-0 py-0 text-red borderless">
+                <v-icon>
+                  mdi-close-box-outline
+               </v-icon>
+              </v-btn>
+            </span>
+              <video
+             class="mt-n10"
             :src="videoData.videoSrc"
               controls
               :loop="true"
-              :volume="0.6"
+              :volume="0"
               :autoplay=true
-              :width=500
+              :width="500"
               :height="400"
               :max-height=400
             >
@@ -243,7 +229,7 @@ export default {
           {name: "Reaction Timer", id: 2, photoSrc: "images/reaction-timer.png", 
           videoSrc: "videos/reaction-timer.webm", sourceCode: 'https://github.com/pkay-14/vueJsVault/tree/main/reaction-timer'},
           {name: "The Portfolio", id: 3, photoSrc: "images/portfolio.png", 
-          videoSrc: "videos/portfolio.webm", sourceCode: ''},
+          videoSrc: "videos/portfolio.webm", sourceCode: 'https://github.com/pkay-14/vueJsVault/tree/main/portfolio'},
         ],
       profile: {
         firstName: "Roland",
@@ -298,6 +284,10 @@ export default {
   min-height: 100vh;
 }
 
+.dark::-webkit-scrollbar {
+  width: 1px;
+}
+
 .top{
   margin-top: 180px;
 }
@@ -310,7 +300,6 @@ export default {
 }
 .first{
   width: 100%;
-  height: 610px;
   background: linear-gradient(
     to right,
     #181818,
@@ -334,7 +323,7 @@ export default {
   padding: 2rem 1rem;
   vertical-align: middle;
   text-align: left;
-  margin-top: 250px;
+  margin-top: 300px;
 }
 .child{
   display: inline-block;
@@ -343,7 +332,7 @@ export default {
   text-align: left;
   margin-right: 8px;
   max-width: 500px;
-  height: 250px;
+  max-height: 250px;
 }
 
 .bgColor1{
@@ -393,5 +382,25 @@ h1.number{
 }
 .center{
   text-align: center;
+}
+
+.borderless{
+  border: 0;
+  box-shadow: none;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 10px;
+  width: 100%;
+  z-index: 1;
+}
+.profileImg{
+  transition-delay: 0.2
+}
+
+@media (max-width: 600px) {
+  .grid-container { grid-template-columns: auto; }
 }
 </style>
